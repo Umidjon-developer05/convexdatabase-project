@@ -27,6 +27,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/app/dashboard/trash/page.tsx"
-  ],
+, "src/app/dashboard/_components/file-browser.tsx"  ],
   "exclude": ["node_modules"]
 }
