@@ -66,6 +66,7 @@ export const columns: ColumnDef<
     cell: ({ row }) => {
       return (
         <div>
+        
           <FileCardActions
             file={row.original}
             isFavorited={row.original.isFavorited}
