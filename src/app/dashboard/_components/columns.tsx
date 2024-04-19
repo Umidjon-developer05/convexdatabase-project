@@ -1,5 +1,3 @@
-"use client";
-
 import { ColumnDef } from "@tanstack/react-table";
 import { Doc, Id } from "../../../../convex/_generated/dataModel";
 import { formatRelative } from "date-fns";
@@ -7,6 +5,19 @@ import { useQuery } from "convex/react";
 import { api } from "../../../../convex/_generated/api";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { FileCardActions } from "./file-actions";
+
+// Define a type alias for the row data type
+type RowData = {
+  _id: Id<"files">;
+  _creationTime: number;
+  shouldDelete?: boolean | undefined;
+  name: string;
+  type: "image" | "csv" | "pdf";
+  orgId: string;
+  fileId: Id<"_storage">;
+  userId: Id<"users">;
+  isFavorited: boolean;
+};
 
 function UserCell({ userId }: { userId: Id<"users"> }) {
   const userProfile = useQuery(api.users.getUserProfile, {
@@ -23,22 +34,8 @@ function UserCell({ userId }: { userId: Id<"users"> }) {
   );
 }
 
-export const columns: ColumnDef<
-  {
-    _id: Id<"files">;
-    _creationTime: number;
-    shouldDelete?: boolean | undefined;
-    type: "image" | "csv" | "pdf";
-    name: string;
-    orgId: string;
-    fileId: Id<"_storage">;
-    userId: Id<"users">;
-  },
-  Doc<"files"> & {
-    url: string;
-    isFavorited: boolean;
-  }
->[] = [
+// Use the RowData alias in the ColumnDef definition
+export const columns: ColumnDef<RowData & { url: string }>[] = [
   {
     accessorKey: "name",
     header: "Name",
