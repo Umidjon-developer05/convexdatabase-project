@@ -24,17 +24,19 @@ function UserCell({ userId }: { userId: Id<"users"> }) {
 }
 
 export const columns: ColumnDef<
-  Doc<"files"> & {
-    url: string;
-    isFavorited: boolean;
+  {
     _id: Id<"files">;
     _creationTime: number;
     shouldDelete?: boolean | undefined;
-    name: string;
     type: "image" | "csv" | "pdf";
+    name: string;
     orgId: string;
     fileId: Id<"_storage">;
     userId: Id<"users">;
+  },
+  Doc<"files"> & {
+    url: string;
+    isFavorited: boolean;
   }
 >[] = [
   {
