@@ -16,7 +16,6 @@ type RowData = {
   orgId: string;
   fileId: Id<"_storage">;
   userId: Id<"users">;
-  isFavorited: boolean;
 };
 
 function UserCell({ userId }: { userId: Id<"users"> }) {
@@ -35,7 +34,9 @@ function UserCell({ userId }: { userId: Id<"users"> }) {
 }
 
 // Use the RowData alias in the ColumnDef definition
-export const columns: ColumnDef<RowData & { url: string }>[] = [
+export const columns: ColumnDef<
+  RowData & { isFavorited: boolean; url: string | null }
+>[] = [
   {
     accessorKey: "name",
     header: "Name",
