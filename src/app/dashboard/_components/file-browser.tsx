@@ -95,6 +95,7 @@ export function FileBrowser({
       <Tabs defaultValue="grid">
         <div className="flex justify-between items-center">
           <TabsList className="mb-2">
+
           
             <TabsTrigger value="grid" className="flex gap-2 items-center">
               <GridIcon />
